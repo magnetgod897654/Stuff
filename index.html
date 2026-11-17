@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131d">
+  <title>BypassStuff — Content Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">B</span><span>Bypass<span class="brand-accent">Stuff</span></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <nav>
+        <button class="nav-link active" data-page="overview"><span>◫</span> Overview</button>
+        <button class="nav-link" data-page="assets"><span>▧</span> Asset IDs</button>
+        <button class="nav-link" data-page="modules"><span>⌘</span> Script modules</button>
+        <button class="nav-link" data-page="settings"><span>⚙</span> Settings editor</button>
+        <button class="nav-link" data-page="versions"><span>◷</span> Version history</button>
+        <button class="nav-link" data-page="activity"><span>≋</span> Activity logs</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="status-dot"></div><span>Static dashboard preview</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+        <div><div class="eyebrow">CONTENT MANAGEMENT</div><div class="top-title" id="pageTitle">Overview</div></div>
+        <div class="top-actions"><span class="preview-pill">PREVIEW</span><div class="avatar">BS</div></div>
+      </header>
+
+      <section class="page active" id="page-overview">
+        <div class="welcome"><div><div class="eyebrow">YOUR WORKSPACE</div><h1>Welcome to BypassStuff</h1><p>Manage your approved Roblox assets, trusted module references, and game settings.</p></div><span class="welcome-icon">✦</span></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-label">SAVED ASSETS</div><div class="stat-value" id="assetCount">0</div><div class="stat-note">Asset ID records</div></article>
+          <article class="stat-card"><div class="stat-label">MODULE REFERENCES</div><div class="stat-value" id="moduleCount">0</div><div class="stat-note">Pre-installed modules</div></article>
+          <article class="stat-card"><div class="stat-label">SETTINGS</div><div class="stat-value" id="settingCount">4</div><div class="stat-note">Local configuration values</div></article>
+          <article class="stat-card"><div class="stat-label">RECENT ACTIVITY</div><div class="stat-value" id="activityCount">0</div><div class="stat-note">Actions in this browser</div></article>
+        </div>
+        <div class="section-heading"><div><h2>Quick actions</h2><p>Jump straight into managing your content.</p></div></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-go="assets"><span class="quick-icon purple">▧</span><b>Add an asset</b><small>Save a Roblox asset ID</small><span class="quick-arrow">↗</span></button>
+          <button class="quick-card" data-go="modules"><span class="quick-icon blue">⌘</span><b>Add a module reference</b><small>Register a trusted ModuleScript</small><span class="quick-arrow">↗</span></button>
+          <button class="quick-card" data-go="settings"><span class="quick-icon green">⚙</span><b>Edit settings</b><small>Update your game configuration</small><span class="quick-arrow">↗</span></button>
+        </div>
+        <div class="notice"><span>ⓘ</span><div><b>Static GitHub Pages version</b><p>This preview saves data in this browser only. Login, shared database storage, activity synchronization, and the Roblox API need a separately hosted secure backend.</p></div></div>
+      </section>
+
+      <section class="page" id="page-assets">
+        <div class="page-intro"><div><h1>Asset ID manager</h1><p>Keep track of Roblox assets you own or are authorized to use.</p></div><button class="primary-btn" id="addAssetBtn">＋ Add asset</button></div>
+        <div class="panel"><div class="panel-head"><div><h2>Saved assets</h2><p>Asset references stored in this browser.</p></div><span class="count-badge" id="assetBadge">0 items</span></div><div id="assetList" class="empty-state">No assets saved yet. Add an asset ID to get started.</div></div>
+      </section>
+
+      <section class="page" id="page-modules">
+        <div class="page-intro"><div><h1>Script module manager</h1><p>Register references to trusted ModuleScripts already included in your Roblox experience.</p></div><button class="primary-btn" id="addModuleBtn">＋ Add module</button></div>
+        <div class="notice"><span>ⓘ</span><div><b>Security note</b><p>This dashboard stores module names and references only. It does not upload, download, inject, or execute arbitrary Lua code.</p></div></div>
+        <div class="panel"><div class="panel-head"><div><h2>Registered modules</h2><p>Use keys that match ModuleScripts installed in your game.</p></div><span class="count-badge" id="moduleBadge">0 items</span></div><div id="moduleList" class="empty-state">No module references registered.</div></div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-intro"><div><h1>Settings editor</h1><p>Change basic configuration values for your project.</p></div><button class="primary-btn" id="saveSettingsBtn">Save settings</button></div>
+        <div class="panel settings-panel">
+          <label class="field"><span>Project display name</span><input id="projectName" value="BypassStuff"></label>
+          <label class="field"><span>Default game mode</span><select id="gameMode"><option>Classic</option><option>Competitive</option><option>Casual</option></select></label>
+          <label class="field"><span>Maintenance mode</span><select id="maintenance"><option value="false">Disabled</option><option value="true">Enabled</option></select></label>
+          <label class="field"><span>Welcome message</span><textarea id="welcomeMessage" rows="3">Welcome to the experience!</textarea></label>
+        </div>
+        <div class="panel settings-panel" style="margin-top:18px">
+          <div><div class="eyebrow">ROBLOX OPEN CLOUD</div><h2 style="margin:6px 0">API key storage</h2><p style="color:#8792a8;font-size:12px;line-height:1.6">Save a restricted Roblox Open Cloud API key in this browser. It stays on this device and is not sent anywhere by this preview.</p></div>
+          <label class="field"><span>Roblox API key</span><input id="robloxApiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Paste your Open Cloud API key"></label>
+          <div style="display:flex;gap:9px;flex-wrap:wrap"><button class="secondary-btn" type="button" id="toggleApiKeyBtn">Show key</button><button class="primary-btn" type="button" id="saveApiKeyBtn">Save API key</button><button class="delete-btn" type="button" id="deleteApiKeyBtn">Delete key</button></div>
+          <p id="apiKeyStatus" role="status" style="font-size:11px;color:#9da7bb;margin:0">No key saved in this browser.</p>
+          <p style="font-size:11px;color:#e6b66d;line-height:1.6;margin:0">Security: browser storage is not encrypted. Anyone who can access this browser profile or its site data may be able to retrieve the key. Use a dedicated key with only the permissions you need. This dashboard preview does not yet perform Roblox API actions.</p>
+        </div>
+      </section>
+
+      <section class="page" id="page-versions">
+        <div class="page-intro"><div><h1>Version history</h1><p>Snapshots of changes made in this browser.</p></div><button class="primary-btn" id="snapshotBtn">＋ Create snapshot</button></div>
+        <div class="panel"><div id="versionList" class="empty-state">No snapshots yet. Create one to save a local checkpoint.</div></div>
+      </section>
+
+      <section class="page" id="page-activity">
+        <div class="page-intro"><div><h1>Activity logs</h1><p>Recent actions recorded locally in this browser.</p></div><button class="secondary-btn" id="clearActivityBtn">Clear logs</button></div>
+        <div class="panel"><div id="activityList" class="empty-state">No activity recorded yet.</div></div>
+      </section>
+      <footer>BypassStuff <span>•</span> GitHub Pages preview <span>•</span> Data stays in this browser</footer>
+    </main>
+  </div>
+
+  <dialog id="itemDialog">
+    <form method="dialog" id="itemForm">
+      <div class="dialog-head"><div><div class="eyebrow">WORKSPACE</div><h2 id="dialogTitle">Add item</h2></div><button class="close-btn" type="button" id="closeItemDialog" aria-label="Close">×</button></div>
+      <label class="field"><span id="nameLabel">Name</span><input id="itemName" required maxlength="70" placeholder="Enter a name"></label>
+      <label class="field"><span id="valueLabel">Asset ID</span><input id="itemValue" required maxlength="120" placeholder="Enter an ID or module key"></label>
+      <p class="form-error" id="formError"></p>
+      <div class="dialog-actions"><button class="secondary-btn" type="button" id="cancelItem">Cancel</button><button class="primary-btn" id="submitItem" value="default">Save item</button></div>
+    </form>
+  </dialog>
+  <script src="app.js"></script>
+</body>
+</html>

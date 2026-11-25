@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
+  <title>UploadStuff V2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+:root{color-scheme:dark;--bg:#080b14;--panel:#101625;--panel2:#0c1220;--line:#202b40;--muted:#8996ad;--text:#edf3ff;--blue:#68a8ff;--cyan:#61e0e4;--green:#66e0b0;--red:#ff858f}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;min-height:100vh;overflow-x:hidden}.ambient{position:fixed;width:420px;height:420px;border-radius:50%;filter:blur(130px);opacity:.13;pointer-events:none;z-index:-1}.ambient-a{background:#1768d7;top:80px;left:-230px}.ambient-b{background:#00b9c7;right:-260px;top:430px}
+.topbar{height:76px;border-bottom:1px solid #1a2435;display:flex;align-items:center;justify-content:space-between;padding:0 max(5vw,22px);background:#080b14d9;backdrop-filter:blur(16px)}.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;font-weight:800;letter-spacing:.12em;font-size:13px}.brand-mark{width:38px;height:38px;display:grid;place-items:center;border:1px solid #3974b9;border-radius:11px;color:#b9d8ff;font-size:21px;box-shadow:inset 0 0 18px #277ad833}.brand-mark span{color:var(--cyan)}.brand-muted{color:#8ea0bb}.brand small{display:block;font:9px "DM Mono",monospace;color:#70809a;letter-spacing:.16em;margin-top:4px}.brand small b{color:var(--cyan);font-weight:400}.top-status{font:10px "DM Mono",monospace;color:#8b9ab1;letter-spacing:.12em}.pulse{display:inline-block;width:7px;height:7px;background:var(--green);border-radius:50%;margin-right:8px;box-shadow:0 0 10px var(--green)}.divider{color:#34445e;margin:0 10px}
+.shell{width:min(1180px,90vw);margin:0 auto}.hero{padding:66px 0 36px}.eyebrow{font:10px "DM Mono",monospace;letter-spacing:.16em;color:var(--cyan);display:flex;align-items:center;gap:9px}.eyebrow-line{height:1px;width:24px;background:var(--cyan)}h1{font-size:clamp(42px,6vw,70px);line-height:1.02;letter-spacing:-.065em;margin:18px 0 14px;font-weight:800}h1 span{color:var(--blue)}.hero-copy{max-width:560px;color:#a2aec2;font-size:14px;line-height:1.8}.hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.hero-tags span{font:9px "DM Mono",monospace;color:#9cabc2;border:1px solid #25334a;border-radius:5px;padding:7px 9px;letter-spacing:.1em}
+.notice-panel{display:flex;gap:15px;padding:18px 20px;border:1px solid #28466a;background:linear-gradient(110deg,#11213a,#0e1727);border-radius:12px;margin:0 0 22px}.notice-icon{flex:0 0 24px;height:24px;border:1px solid #548ac2;border-radius:50%;display:grid;place-items:center;color:#a9d1ff;font-weight:700}.notice-panel strong{font-size:13px}.notice-panel p{font-size:12px;color:#aab8ce;line-height:1.7;margin:5px 0 7px}.notice-panel a,.permission-panel a{color:#86bcff;text-decoration:none;font-size:11px}.notice-panel a:hover,.permission-panel a:hover{text-decoration:underline}
+.workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.8fr);gap:18px;align-items:start}.panel{background:linear-gradient(145deg,#111a2a,#0c1220);border:1px solid var(--line);border-radius:13px;box-shadow:0 18px 60px #0002}.form-panel{padding:27px}.panel-heading{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px}.panel-index{font:9px "DM Mono",monospace;color:#64758e;border:1px solid #26354c;padding:6px 8px;border-radius:4px}h2{font-size:20px;letter-spacing:-.04em;margin:7px 0 0}.field{margin-top:20px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.field-label{display:block;font:9px "DM Mono",monospace;letter-spacing:.12em;color:#aab7cb;margin-bottom:9px}.field-label em{font-style:normal;color:#ff9da5;font-size:8px;margin-left:5px}.field-label span{color:#62728c;font-size:8px;margin-left:5px}.hint{font-size:10px;color:#72829c;line-height:1.65;margin:7px 0 0}input:not([type=radio]),textarea{width:100%;background:#090f1b;border:1px solid #27364d;border-radius:7px;padding:13px 14px;color:#e9f1ff;font:12px Manrope;outline:none;transition:.2s}input:focus,textarea:focus{border-color:#5a9ce8;box-shadow:0 0 0 3px #4a91e51a}input::placeholder,textarea::placeholder{color:#52617a}textarea{resize:vertical;min-height:75px}.segmented{display:grid;grid-template-columns:1fr 1fr;background:#090f1b;border:1px solid #27364d;padding:4px;border-radius:8px}.segmented label{cursor:pointer}.segmented input,.mode-card input{position:absolute;opacity:0;pointer-events:none}.segmented span{display:block;text-align:center;padding:9px;border-radius:5px;color:#8493ab;font-size:11px}.segmented input:checked+span{background:#1b3454;color:#c7e0ff;box-shadow:inset 0 0 0 1px #3c6b9e}.secret-wrap{position:relative}.secret-wrap input{padding-right:65px}.reveal{position:absolute;right:9px;top:50%;transform:translateY(-50%);background:none;border:0;color:#81b7f7;font:9px "DM Mono";cursor:pointer}.mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mode-card{position:relative;display:flex;flex-direction:column;gap:6px;border:1px solid #27364d;background:#0a101c;border-radius:8px;padding:13px;cursor:pointer}.mode-card.selected{border-color:#4b83bf;background:#12233a}.mode-title{font-size:12px;font-weight:800}.mode-desc{font-size:10px;color:#8190a8;line-height:1.5}.mode-card input:checked~.mode-title{color:#b9d9ff}.dropzone{min-height:128px;border:1px dashed #3a5474;border-radius:9px;background:#0a1220;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer;text-align:center;transition:.2s}.dropzone.dragover{border-color:var(--cyan);background:#102633}.dropzone input{display:none}.upload-icon{width:30px;height:30px;border:1px solid #3b6a9d;border-radius:8px;display:grid;place-items:center;color:#9bc9ff;font-size:18px}.dropzone strong{font-size:11px}.dropzone span:last-child{font-size:9px;color:#73839c}.publish-button{margin-top:22px;width:100%;border:0;border-radius:7px;padding:15px 17px;background:linear-gradient(100deg,#337ed0,#3cbdc9);color:#06101b;display:flex;justify-content:space-between;align-items:center;font:800 10px "DM Mono";letter-spacing:.13em;cursor:pointer;transition:.2s}.publish-button:hover{filter:brightness(1.12);transform:translateY(-1px)}.publish-button:disabled{opacity:.55;cursor:wait;transform:none}.publish-button b{font-size:18px}.form-footnote{text-align:center;color:#64738b;font-size:9px;margin:11px 0 0}
+.side-column{display:flex;flex-direction:column;gap:18px}.workflow-panel,.permission-panel,.safety-panel{padding:22px}.workflow-panel .panel-heading{margin-bottom:15px}.workflow-item{display:grid;grid-template-columns:27px 1fr auto;gap:10px;padding:15px 0;border-top:1px solid #202b3e;align-items:start}.step-number{width:25px;height:25px;border:1px solid #365b83;color:#9ac7ff;border-radius:7px;display:grid;place-items:center;font:10px "DM Mono"}.workflow-item strong{font-size:11px}.workflow-item p{font-size:10px;line-height:1.6;color:#8291a9;margin:4px 0 0}.step-state{font:8px "DM Mono";color:var(--green);letter-spacing:.08em}.step-state.manual{color:#d5b77d}.permission-panel h2{margin-bottom:16px}.check-list{list-style:none;padding:0;margin:0 0 15px}.check-list li{font-size:10px;color:#a2b0c5;padding:8px 0;border-bottom:1px solid #1e293b}.check-list li span{color:var(--green);margin-right:8px}.safety-panel{background:#0c171d;border-color:#1b3b3a}.safety-top{display:flex;gap:9px;align-items:center;color:#80d6c3;font:9px "DM Mono";letter-spacing:.13em}.shield{font-size:18px}.safety-panel p{font-size:10px;color:#8da6a8;line-height:1.7;margin-bottom:0}
+.result-panel{padding:25px;margin-top:18px}.result-badge{font:9px "DM Mono";padding:6px 9px;border-radius:4px;background:#17382e;color:#7fe0b7}.result-badge.error{background:#3a2028;color:#ff9ca5}.result-panel>p{font-size:12px;color:#aab8cc;line-height:1.7}.result-details{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.result-details div{padding:12px;background:#0a101c;border:1px solid #202c40;border-radius:7px}.result-details dt{font:8px "DM Mono";color:#72839d;letter-spacing:.1em}.result-details dd{font-size:11px;margin:6px 0 0;overflow-wrap:anywhere}
+footer{display:flex;justify-content:space-between;gap:12px;padding:27px 0 35px;margin-top:20px;color:#596982;font:9px "DM Mono";letter-spacing:.1em}footer b{color:#6da9e8;font-weight:400}footer i{font-style:normal;color:var(--cyan)}
+@media(max-width:850px){.workspace{grid-template-columns:1fr}.side-column{display:grid;grid-template-columns:1fr 1fr}.safety-panel{grid-column:1/-1}.hero{padding-top:48px}}@media(max-width:560px){.topbar{height:66px;padding:0 5vw}.top-status{font-size:8px}.shell{width:90vw}.hero{padding:42px 0 27px}.hero-copy{font-size:12px}.form-panel{padding:19px}.field-grid{grid-template-columns:1fr;gap:0}.side-column{display:flex}.notice-panel{padding:14px}.notice-panel p{font-size:11px}.result-details{grid-template-columns:1fr 1fr}footer{flex-direction:column;font-size:8px}}
+
+  </style>
+  <script defer>
+const form = document.querySelector("#publishForm");
+const fileInput = document.querySelector("#placeFile");
+const dropzone = document.querySelector("#dropzone");
+const fileTitle = document.querySelector("#fileTitle");
+const fileSub = document.querySelector("#fileSub");
+const publishButton = document.querySelector("#publishButton");
+const resultPanel = document.querySelector("#resultPanel");
+const resultTitle = document.querySelector("#resultTitle");
+const resultBadge = document.querySelector("#resultBadge");
+const resultMessage = document.querySelector("#resultMessage");
+const resultDetails = document.querySelector("#resultDetails");
+
+function selected(name) {
+  return form.querySelector(`input[name="${name}"]:checked`)?.value || "";
+}
+
+function showResult(kind, title, message, details = {}) {
+  resultPanel.hidden = false;
+  resultTitle.textContent = title;
+  resultBadge.textContent = kind === "success" ? "SUCCESS" : kind === "pending" ? "PROCESSING" : "ATTENTION";
+  resultBadge.classList.toggle("error", kind === "error");
+  resultMessage.textContent = message;
+  resultDetails.replaceChildren();
+  for (const [key, value] of Object.entries(details)) {
+    const wrap = document.createElement("div");
+    const dt = document.createElement("dt");
+    const dd = document.createElement("dd");
+    dt.textContent = key.toUpperCase();
+    dd.textContent = String(value ?? "—");
+    wrap.append(dt, dd);
+    resultDetails.append(wrap);
+  }
+  resultPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function setFile(file) {
+  if (!file) {
+    fileTitle.textContent = "Drop your place file here";
+    fileSub.textContent = "or browse files · .RBXL / .RBXLX · max 10 MB";
+    return;
+  }
+  fileTitle.textContent = file.name;
+  fileSub.textContent = `${(file.size / 1024 / 1024).toFixed(2)} MB · ready to upload`;
+}
+
+fileInput.addEventListener("change", () => setFile(fileInput.files[0]));
+["dragenter", "dragover"].forEach(type => dropzone.addEventListener(type, event => {
+  event.preventDefault();
+  dropzone.classList.add("dragover");
+}));
+["dragleave", "drop"].forEach(type => dropzone.addEventListener(type, event => {
+  event.preventDefault();
+  dropzone.classList.remove("dragover");
+}));
+dropzone.addEventListener("drop", event => {
+  const file = event.dataTransfer.files[0];
+  if (!file) return;
+  const transfer = new DataTransfer();
+  transfer.items.add(file);
+  fileInput.files = transfer.files;
+  setFile(file);
+});
+
+document.querySelector("#toggleKey").addEventListener("click", event => {
+  const input = document.querySelector("#apiKey");
+  input.type = input.type === "password" ? "text" : "password";
+  event.currentTarget.textContent = input.type === "password" ? "SHOW" : "HIDE";
+});
+
+document.querySelectorAll(".mode-card").forEach(card => {
+  card.addEventListener("click", () => {
+    document.querySelectorAll(".mode-card").forEach(item => item.classList.remove("selected"));
+    card.classList.add("selected");
+  });
+});
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  resultPanel.hidden = true;
+
+  const file = fileInput.files[0];
+  if (!file) return showResult("error", "File required", "Choose a .rbxl or .rbxlx file.");
+  if (!/\.(rbxl|rbxlx)$/i.test(file.name)) return showResult("error", "Unsupported file", "Only .rbxl and .rbxlx files are supported.");
+  if (file.size > 10 * 1024 * 1024) return showResult("error", "File too large", "This build allows files up to 10 MB.");
+
+  const data = new FormData(form);
+  data.set("ownership", selected("ownership"));
+  data.set("publishMode", selected("publishMode"));
+
+  publishButton.disabled = true;
+  publishButton.querySelector("span").textContent = "DEPLOYMENT IN PROGRESS...";
+  try {
+    const response = await fetch("/api/publish", { method: "POST", body: data });
+    const result = await response.json().catch(() => ({}));
+
+    if (response.status === 202 || result.pending) {
+      showResult("pending", "Roblox is still processing", result.message || "The request was accepted. Check Creator Dashboard before retrying.", {
+        "Place ID": result.placeId || data.get("placeId"),
+        "Request": result.requestId || "—",
+        "Operation": result.operation || "Pending"
+      });
+    } else if (!response.ok || !result.success) {
+      showResult("error", "Deployment needs attention", result.error || "The server could not publish this file.", {
+        "HTTP status": response.status,
+        "Request": result.requestId || "—"
+      });
+    } else {
+      showResult("success", "Place version processed", result.note || "Roblox reported a successful upload.", {
+        "Place ID": result.placeId,
+        "Universe ID": result.universeId,
+        "Revision": result.revisionId || "Not returned",
+        "Published": result.isPublished ? "Yes" : "No — saved only",
+        "File": result.fileName,
+        "Ownership": result.ownership
+      });
+      form.reset();
+      setFile(null);
+      document.querySelectorAll(".mode-card").forEach(item => item.classList.toggle("selected", item.querySelector("input").checked));
+    }
+  } catch {
+    showResult("error", "Connection error", "Could not reach the local UploadStuff server. Make sure npm start is running.");
+  } finally {
+    publishButton.disabled = false;
+    publishButton.querySelector("span").textContent = "START DEPLOYMENT";
+  }
+});
+
+fetch("/api/health").catch(() => {});
+
+  </script>
+</head>
+<body>
+  <div class="ambient ambient-a"></div><div class="ambient ambient-b"></div>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <span class="brand-mark">U<span>/</span></span>
+      <span>UPLOAD<span class="brand-muted">STUFF</span><small>CREATOR CONSOLE <b>V2.0</b></small></span>
+    </a>
+    <div class="top-status"><span class="pulse"></span> LOCAL SERVER <span class="divider">/</span> OPEN CLOUD</div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> ROBLOX PLACE DEPLOYMENT</div>
+      <h1>Publish with<br><span>precision.</span></h1>
+      <p class="hero-copy">A focused control panel for publishing place files to personal or group-owned Roblox experiences.</p>
+      <div class="hero-tags"><span>RBXL</span><span>RBXLX</span><span>VERSION TRACKING</span><span>GROUP PERMISSIONS</span></div>
+    </section>
+
+    <section class="notice-panel">
+      <div class="notice-icon">i</div>
+      <div><strong>New experience setup</strong><p>Roblox's documented Open Cloud API does not currently expose a supported API-key operation here to create a brand-new experience or add a new place. Create it in Roblox Studio or Creator Dashboard first, then enter its IDs below. UploadStuff will publish to that existing place.</p>
+        <a href="https://create.roblox.com/docs/production/publishing/publish-games-and-places" target="_blank" rel="noreferrer">Roblox: create and publish games and places ↗</a>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="panel form-panel">
+        <div class="panel-heading">
+          <div><div class="eyebrow">01 / CONFIGURATION</div><h2>Deployment target</h2></div>
+          <span class="panel-index">CONFIG</span>
+        </div>
+
+        <form id="publishForm">
+          <label class="field-label" for="ownership">EXPERIENCE OWNERSHIP</label>
+          <div class="segmented">
+            <label><input type="radio" name="ownership" value="personal" checked><span>Personal</span></label>
+            <label><input type="radio" name="ownership" value="group"><span>Group</span></label>
+          </div>
+          <p class="hint">Group publishing depends on the API key owner's group role and the key's configured permissions. This selector is a label, not a permission override.</p>
+
+          <div class="field-grid">
+            <div class="field">
+              <label class="field-label" for="universeId">UNIVERSE ID <em>REQUIRED</em></label>
+              <input id="universeId" name="universeId" inputmode="numeric" autocomplete="off" placeholder="e.g. 1234567890" required>
+            </div>
+            <div class="field">
+              <label class="field-label" for="placeId">PLACE ID <em>REQUIRED</em></label>
+              <input id="placeId" name="placeId" inputmode="numeric" autocomplete="off" placeholder="e.g. 9876543210" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="displayName">DASHBOARD LABEL <span>OPTIONAL</span></label>
+            <input id="displayName" name="displayName" maxlength="100" placeholder="Main place / Lobby / World 2">
+          </div>
+          <div class="field">
+            <label class="field-label" for="description">INTERNAL DESCRIPTION <span>OPTIONAL</span></label>
+            <textarea id="description" name="description" maxlength="1000" rows="3" placeholder="A note to identify this upload target..."></textarea>
+            <p class="hint">Saved in the result only; not sent as Roblox place metadata.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="apiKey">ROBLOX OPEN CLOUD API KEY <em>REQUIRED</em></label>
+            <div class="secret-wrap"><input id="apiKey" name="apiKey" type="password" autocomplete="off" placeholder="Paste your API key" required><button type="button" id="toggleKey" class="reveal">SHOW</button></div>
+            <p class="hint">The key is sent to this local server for the request only. It is not saved to browser storage or written to logs.</p>
+          </div>
+
+          <div class="field">
+            <label class="field-label">UPLOAD MODE</label>
+            <div class="mode-grid">
+              <label class="mode-card selected"><input type="radio" name="publishMode" value="published" checked><span class="mode-title">Publish</span><span class="mode-desc">Save and publish the new version.</span></label>
+              <label class="mode-card"><input type="radio" name="publishMode" value="saved"><span class="mode-title">Save only</span><span class="mode-desc">Save a version without publishing it.</span></label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="placeFile">PLACE FILE</label>
+            <label class="dropzone" id="dropzone" for="placeFile">
+              <input id="placeFile" name="placeFile" type="file" accept=".rbxl,.rbxlx" required>
+              <span class="upload-icon">↑</span>
+              <strong id="fileTitle">Drop your place file here</strong>
+              <span id="fileSub">or browse files · .RBXL / .RBXLX · max 10 MB</span>
+            </label>
+          </div>
+
+          <button class="publish-button" id="publishButton" type="submit"><span>START DEPLOYMENT</span><b>↗</b></button>
+          <p class="form-footnote">By publishing, you may overwrite the selected place's current live version.</p>
+        </form>
+      </section>
+
+      <aside class="side-column">
+        <section class="panel workflow-panel">
+          <div class="panel-heading"><div><div class="eyebrow">02 / WORKFLOW</div><h2>New or existing?</h2></div></div>
+          <div class="workflow-item"><span class="step-number">A</span><div><strong>Existing experience</strong><p>Enter its Universe ID and the target Place ID, then upload.</p></div><span class="step-state">READY</span></div>
+          <div class="workflow-item"><span class="step-number">B</span><div><strong>Brand-new experience</strong><p>Create it in Studio or Creator Dashboard. Copy the generated IDs into this form.</p></div><span class="step-state manual">MANUAL</span></div>
+          <div class="workflow-item"><span class="step-number">C</span><div><strong>Additional sub-place</strong><p>Add the place in Studio using Publish As → Add as a new place. Then publish its file here.</p></div><span class="step-state manual">MANUAL</span></div>
+        </section>
+
+        <section class="panel permission-panel">
+          <div class="eyebrow">03 / API REQUIREMENTS</div><h2>Key permissions</h2>
+          <ul class="check-list">
+            <li><span>✓</span> Assets API access</li>
+            <li><span>✓</span> Place asset write permission</li>
+            <li><span>✓</span> Correct experience selected / allowed</li>
+            <li><span>✓</span> Group role allows publishing (for groups)</li>
+          </ul>
+          <a href="https://create.roblox.com/docs/cloud/auth/api-keys" target="_blank" rel="noreferrer">Roblox API key guide ↗</a>
+        </section>
+        <section class="panel safety-panel">
+          <div class="safety-top"><span class="shield">◇</span><span>LOCAL KEY HANDLING</span></div>
+          <p>Your key is processed in memory by the server and forwarded to Roblox over HTTPS. Do not deploy this version as a public multi-user website without adding authentication, per-user secret storage, and stronger operational controls.</p>
+        </section>
+      </aside>
+    </div>
+
+    <section class="panel result-panel" id="resultPanel" hidden aria-live="polite">
+      <div class="panel-heading"><div><div class="eyebrow">04 / DEPLOYMENT REPORT</div><h2 id="resultTitle">Deployment result</h2></div><span class="result-badge" id="resultBadge">STATUS</span></div>
+      <p id="resultMessage"></p>
+      <dl class="result-details" id="resultDetails"></dl>
+    </section>
+
+    <footer><span>UPLOADSTUFF <b>V2.0</b></span><span>BUILT FOR CREATOR WORKFLOWS <i>·</i> NOT AFFILIATED WITH ROBLOX</span></footer>
+  </main>
+</body>
+</html>
